@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+path = File.expand_path(File.join(File.dirname(__FILE__), %w(.. lib)))
+libs = File.join(path, '*.rb')
+uis = File.join(path, 'uis', '*.rb')
+players = File.join(path, 'players', '*.rb')
+
+Dir[libs, uis].each{|f|
+  require f
+}
+
+@ui = TextUI.new
+@engine = HangmanEngine.new(@ui)
+@players = []
+
+Dir[players].each{|f|
+  require f
+  f.match(/.*\/(.*)\.rb$/)
+  p = $1
+  puts "Loading player #{p}"
+  @players << $1.camelcase.constantize.new
+}
+
+stats = @engine.play_games(@players, 15, 0)
+p stats

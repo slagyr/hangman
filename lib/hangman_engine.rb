@@ -25,12 +25,17 @@ class HangmanEngine
   end
 
   def play_game(player, word)
-    @player = player
-    @word = word
-    new_game
-    @ui.update_word(filtered_word)
-    guess(player.guess(filtered_word, @guesses_left)) until over?
-    return game_result, score
+    begin
+      @player = player
+      @word = word
+      new_game
+      @ui.update_word(filtered_word)
+      guess(player.guess(filtered_word, @guesses_left)) until over?
+      return game_result, score
+    rescue Exception => e
+      fail!("Player raised exception: #{e.class.name}: #{e.message}")
+      return game_result, score
+    end
   end
 
   protected
@@ -111,6 +116,7 @@ class HangmanEngine
     def score
       score = @guesses_left * 10
       score -= unguessed_spaces * 5
+      score = -100 if @fail
       @ui.game_score(score)
       @player.game_score(score)
       score

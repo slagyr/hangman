@@ -49,9 +49,13 @@ class TextUI < HangmanAbstractUI
   end
 
   def game_score(score)
+    out "Game score: #{score}"
+    draw_page
   end
   
   def game_result(result)
+    out "Game result: #{result}"
+    draw_page
   end
   
   protected
