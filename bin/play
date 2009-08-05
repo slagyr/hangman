@@ -8,7 +8,7 @@ Dir[libs, uis].each{|f|
   require f
 }
 
-@ui = TextUI.new
+@ui = SimpleTextUI.new
 @engine = HangmanEngine.new(@ui)
 @players = []
 
@@ -20,5 +20,5 @@ Dir[players].each{|f|
   @players << $1.camelcase.constantize.new
 }
 
-stats = @engine.play_games(@players, 15, 0)
+stats = @engine.play_games(@players, 15, 1)
 p stats

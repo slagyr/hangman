@@ -1,5 +1,5 @@
 class HangmanEngine
-  DICTIONARY = "/usr/share/dict/words"
+  DICTIONARY = File.dirname(__FILE__) + "/words"
   attr_accessor :ui, :rounds
 
   def initialize(ui, options = {})
