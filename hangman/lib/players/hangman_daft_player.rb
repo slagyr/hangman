@@ -27,7 +27,7 @@ class HangmanDaftPlayer
   def fail(reason)
   end
   
-  def game_result(result)
+  def game_result(result, word)
   end
   
   def game_score(score)
