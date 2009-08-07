@@ -52,7 +52,7 @@ hangman {
 word_space {
   text_color :white
   font_face "arial"
-  font_size 29
+  font_size 27
   padding 1
   margin 7
   border_color :white

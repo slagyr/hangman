@@ -68,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="word_area.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="word_area.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hangman/default_scene/players/word_area.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="49" selection-start="718" selection-end="718" vertical-scroll-proportion="0.49345794">
+            <state line="51" column="87" selection-start="1292" selection-end="1292" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -140,10 +140,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="styles.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hangman/default_scene/styles.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="86" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
+            <state line="54" column="14" selection-start="930" selection-end="930" vertical-scroll-proportion="0.49345794">
               <folding />
             </state>
           </provider>
@@ -536,7 +536,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="22" width="1920" height="1174" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
@@ -554,7 +554,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45765936" sideWeight="0.5" order="10" side_tool="false" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45765936" sideWeight="0.5" order="10" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
@@ -697,16 +697,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hangman/default_scene/styles.rb">
+    <entry file="file://$PROJECT_DIR$/hangman/default_scene/players/word_area.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="86" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0">
+        <state line="51" column="87" selection-start="1292" selection-end="1292" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hangman/default_scene/players/word_area.rb">
+    <entry file="file://$PROJECT_DIR$/hangman/default_scene/styles.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="49" selection-start="718" selection-end="718" vertical-scroll-proportion="0.49345794">
+        <state line="54" column="14" selection-start="930" selection-end="930" vertical-scroll-proportion="0.49345794">
           <folding />
         </state>
       </provider>
