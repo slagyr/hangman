@@ -45,11 +45,32 @@ hangman {
   background_image_fill_strategy :static
   background_image_x :center
   background_image_y :center
+  horizontal_alignment :center
+  vertical_alignment :center
+}
+
+word_space {
+  text_color :white
+  font_face "arial"
+  font_size 29
+  padding 1
+  margin 7
+  border_color :white
+  bottom_border_width 3
+  width 40
+  height 60
+  horizontal_alignment :center
+  vertical_alignment :center
 }
 
 status {
   width "100%"
-  height 40 
+  height 40
+  horizontal_alignment :center
+  vertical_alignment :center
+  text_color "#2661da"
+  font_face :arial
+  font_size 12
 }
 
 letters {

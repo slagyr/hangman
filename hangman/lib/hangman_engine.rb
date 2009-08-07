@@ -13,7 +13,7 @@ class HangmanEngine
     @chosen_words = Array.new(count).map{ rand_word }
     stats = {}
     players.each{|player|
-      player.word_list = @words
+#      player.word_list = @words
       stats[player.name] = {'wins' => 0, 'losses' => 0, 'fails' => 0, 'score' => 0}
       @chosen_words.each{|round_word|
         result, score = play_game(player, round_word)
@@ -31,10 +31,10 @@ class HangmanEngine
       new_game
       @ui.update_word(filtered_word)
       guess(player.guess(filtered_word, @guesses_left)) until over?
-      return game_result, score
+      return game_result(word), score
     rescue Exception => e
       fail!("Player raised exception: #{e.class.name}: #{e.message}")
-      return game_result, score
+      return game_result(word), score
     end
   end
 
@@ -100,7 +100,7 @@ class HangmanEngine
       @words.freeze
     end
 
-    def game_result
+    def game_result(word)
       result = if won?
         'win'
       elsif @fail
@@ -108,8 +108,8 @@ class HangmanEngine
       else
         'loss'
       end
-      @ui.game_result(result)
-      @player.game_result(result)
+      @ui.game_result(result, word)
+      @player.game_result(result, word)
       result
     end
 
