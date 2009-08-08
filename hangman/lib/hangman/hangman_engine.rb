@@ -1,44 +1,46 @@
-class HangmanEngine
-  DICTIONARY = File.dirname(__FILE__) + "/words"
-  attr_accessor :ui, :rounds
+module Hangman
+  class HangmanEngine
+    DICTIONARY = File.dirname(__FILE__) + "/words"
+    attr_accessor :ui, :rounds
 
-  def initialize(ui, options = {})
-    @rounds = options[:rounds] || 1
-    @ui = ui
-    load_word_list
-  end
-
-  def play_games(players, count, ui_delay = 0.0)
-    @ui.set_delay(ui_delay)
-    @chosen_words = Array.new(count).map{ rand_word }
-    stats = {}
-    players.each{|player|
-#      player.word_list = @words
-      stats[player.name] = {'wins' => 0, 'losses' => 0, 'fails' => 0, 'score' => 0}
-      @chosen_words.each{|round_word|
-        result, score = play_game(player, round_word)
-        stats[player.name][pluralize[result]] += 1
-        stats[player.name]['score'] += score
-      }
-    }
-    stats
-  end
-
-  def play_game(player, word)
-    begin
-      @player = player
-      @word = word
-      new_game
-      @ui.update_word(filtered_word)
-      guess(player.guess(filtered_word, @guesses_left)) until over?
-      return game_result(word), score
-    rescue Exception => e
-      fail!("Player raised exception: #{e.class.name}: #{e.message}")
-      return game_result(word), score
+    def initialize(ui, options = {})
+      @rounds = options[:rounds] || 1
+      @ui = ui
+      load_word_list
     end
-  end
 
-  protected
+    def play_games(players, count, ui_delay = 0.0)
+      @ui.set_delay(ui_delay)
+      @chosen_words = Array.new(count).map{ rand_word }
+      stats = {}
+      players.each{|player|
+      #      player.word_list = @words
+        stats[player] = {'wins' => 0, 'losses' => 0, 'fails' => 0, 'score' => 0}
+        @chosen_words.each{|round_word|
+          result, score = play_game(player, round_word)
+          stats[player][pluralize[result]] += 1
+          stats[player]['score'] += score
+        }
+      }
+      stats
+    end
+
+    def play_game(player, word)
+      begin
+        @player = player
+        @word = word
+        new_game
+        @ui.update_word(filtered_word)
+        guess(player.guess(filtered_word, @guesses_left)) until over?
+        return game_result(word), score
+      rescue Exception => e
+        fail!("Player raised exception: #{e.class.name}: #{e.message}")
+        return game_result(word), score
+      end
+    end
+
+    protected
+
     def new_game
       @guesses_left = 6
       @ui.new_game(@player, @guesses_left)
@@ -55,7 +57,7 @@ class HangmanEngine
     def guess(player_guess)
       @ui.guessed(player_guess)
       unless @available_letters.include?(player_guess)
-        fail!('Invalid guess') 
+        fail!('Invalid guess')
       else
         if @word.include?(player_guess)
           #correct
@@ -85,6 +87,7 @@ class HangmanEngine
     end
 
     # often => _f_en
+
     def filtered_word
       @word.split('').map{|i| @guessed_letters.include?(i) || (i !~ /[a-z]/) ? i : '_' }.join('')
     end
@@ -101,13 +104,14 @@ class HangmanEngine
     end
 
     def game_result(word)
-      result = if won?
-        'win'
-      elsif @fail
-        'fail'
-      else
-        'loss'
-      end
+      result =
+              if won?
+                'win'
+              elsif @fail
+                'fail'
+              else
+                'loss'
+              end
       @ui.game_result(result, word)
       @player.game_result(result, word)
       result
@@ -121,13 +125,15 @@ class HangmanEngine
       @player.game_score(score)
       score
     end
-    
+
     def unguessed_spaces
       filtered_word.gsub(/[^_]/, '').size
     end
-    
+
     # little hack because I miss rails
+
     def pluralize
       {'win' => 'wins', 'loss' => 'losses', 'fail' => 'fails'}
     end
+  end
 end

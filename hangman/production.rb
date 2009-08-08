@@ -15,8 +15,8 @@ module Production
   # This is a good place to require needed files and instantiate objects in the busines layer.
   def production_opening
     $: << File.dirname(__FILE__) + "/lib"
-    require 'hangman_engine'
-    require 'players/human_player'
+    require 'hangman/hangman_engine'
+    require 'hangman/players/human_player'
   end
 
   # Hook #2.  Called after internal gems have been loaded and stages have been instantiated.
@@ -26,7 +26,8 @@ module Production
   # Hook #3.  Called when the production has fully opened.
   def production_opened
     game_scene = theater["default"].current_scene
-    @game_engine = HangmanEngine.new(game_scene)
+    @game_engine = Hangman::HangmanEngine.new(game_scene)
+puts "@game_engine: #{@game_engine}"    
   end
 #
 #  # The system will call this methods when it wishes to close the production, perhaps when the user quits the

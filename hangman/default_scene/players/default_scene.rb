@@ -9,13 +9,18 @@ module DefaultScene
   end
 
   def close
-puts "DefaultScene.close"    
     stage.close
   end
 
   def play_new_game
     @game_thread = Thread.new do
-      production.game_engine.play_games([HumanPlayer.new(self)], 1)
+      begin
+        require 'hangman/players/human_player'
+        production.game_engine.play_games([::Hangman::Players::HumanPlayer.new(self)], 1)
+      rescue StandardError => e
+        puts e
+        puts e.backtrace
+      end
     end 
   end
 
@@ -31,7 +36,7 @@ puts "DefaultScene.close"
 
   def new_game(player, guesses_per_game)
     puts "****************************"
-    puts "New game with #{player.name}"
+    puts "New game with #{player.class.name}"
     @player = player
     new_game_menu_item.disable
     word_area.clear
