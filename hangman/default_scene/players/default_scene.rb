@@ -12,6 +12,10 @@ module DefaultScene
     stage.close
   end
 
+  def load_computers
+    production.producer.open_scene("locker_room", production.theater["locker_room"])
+  end
+
   def play_new_game
     @game_thread = Thread.new do
       begin

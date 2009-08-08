@@ -4,7 +4,7 @@ module Profile
 
   attr_reader :profile
   prop_reader :player_name, :author_name, :description
-  prop_reader :coverage_graph, :flog_graph, :simplicity_graph, :battle_graph 
+  prop_reader :coverage_graph, :flog_graph, :simplicity_graph, :play_graph
   prop_reader :average_graph, :saikuro_graph, :flay_graph
   prop_reader :player_list
 
@@ -15,7 +15,7 @@ module Profile
     description.text = @profile.description
 
     average_graph.populate(@profile.average_score, @profile.average_score.to_s)
-    battle_graph.populate(@profile.battle_score, @profile.battle_description)
+    play_graph.populate(@profile.battle_score, @profile.battle_description)
     simplicity_graph.populate(@profile.simplicity_score, @profile.simplicity_description)
     coverage_graph.populate(@profile.coverage_score, @profile.coverage_description)
     flog_graph.populate(@profile.flog_score, @profile.flog_description)
@@ -26,7 +26,7 @@ module Profile
   def perform_analysis
     return if @profile.nil?
     average_graph.populate(0, "analyzing...")
-    battle_graph.populate(0, "analyzing...")
+    play_graph.populate(0, "analyzing...")
     simplicity_graph.populate(0, "analyzing...")
     coverage_graph.populate(0, "analyzing...")
     flog_graph.populate(0, "analyzing...")
@@ -40,7 +40,7 @@ module Profile
   end
 
   def update_battle_score(score, description)
-    battle_graph.populate(score, description)
+    play_graph.populate(score, description)
   end
 
   def update_simplicity_score(score, description)

@@ -28,11 +28,12 @@ menu {
 }
 
 menu_item {
-  width 100
+  width 150
   text_color "#2661da"
   font_size 14
   font_face :arial
   font_style :bold
+  horizontal_alignment :center
   hover {
     text_color :white
   }

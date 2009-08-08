@@ -1,22 +1,22 @@
 profile :id => "profile" do
   title :text => "Dossier"
-  stat_label :text => "Player Name:"
+  stat_label :text => "Name:"
   stat_result :text => "No player selected", :id => "player_name"
 
   stat_label :text => "Author:"
-  stat_result :text => "No player selected", :id => "author_name"
+  stat_result :text => "", :id => "author_name"
 
-  stat_label :text => "Description:"
-  stat_result :text => "No player selected", :height => 100, :vertical_scrollbar => :on, :id => "description"
+  stat_label :text => "Profile:"
+  stat_result :text => "", :id => "description"
 
   stat_label :text => "Average Score:"
   stat_result do
     result_graph :id => "average_graph"
   end
 
-  stat_label :text => "Battle Record:"
+  stat_label :text => "Play Record:"
   stat_result do
-    result_graph :id => "battle_graph"
+    result_graph :id => "play_graph"
   end
 
   stat_label :text => "Simplicity Score:"
@@ -24,7 +24,7 @@ profile :id => "profile" do
     result_graph :id => "simplicity_graph"
   end
 
-  stat_label :text => "Test Coverage Score:"
+  stat_label :text => "Test Coverage:"
   stat_result do
     result_graph :id => "coverage_graph"
   end

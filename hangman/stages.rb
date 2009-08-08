@@ -18,6 +18,14 @@ stage "default" do
   background_color "transparent"
 end
 
+stage "locker_room" do
+  title "Locker Room"
+  location [50, 200]
+  size [300, 550]
+  framed false
+  background_color "transparent"
+end
+
 stage "devtool" do
   default_scene "devtool"
   title "Dev Tool"

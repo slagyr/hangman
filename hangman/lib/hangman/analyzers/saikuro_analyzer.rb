@@ -11,6 +11,7 @@ module Hangman
       SaikuroOptions = "--warn_cyclo 5 --error_cyclo 7 --output_directory /tmp/saikuro --filter_cyclo 0 --cyclo "
 
       def self.analyze(profile)
+        return 0, "0 : lib not found" if profile.lib_dir.nil?
         command = "ruby #{SaikuroMain} #{SaikuroOptions} --input_directory #{profile.lib_dir}"
         system command
 

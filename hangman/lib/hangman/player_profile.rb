@@ -36,8 +36,7 @@ module Hangman
       def load_from_gems
         profiles = []
         gem_index.latest_specs.each do |spec|
-puts "spec.name: #{spec.name}"
-          if spec.summary[0..17] == "Hangman Player:"
+          if spec.summary[0..14] == "Hangman Player:"
             profiles << load_from_gem(spec)
           end
         end
@@ -47,12 +46,12 @@ puts "spec.name: #{spec.name}"
       def load_from_gem(name_or_spec)
         spec = name_or_spec.is_a?(String) ? find_gem_spec(name_or_spec) : name_or_spec
         return if spec.nil?
-        name = spec.summary[18..-1]
+        name = spec.summary[15..-1]
         profile = Server.profile(name)
         profile = PlayerProfile.new(:name => name) if profile.nil?
-        profile.filename = spec.name
-        profile.classname = spec.name.camalized
-        profile.name = spec.summary[18..-1]
+        profile.filename = spec.name.sub("hangman_", "")
+        profile.classname = profile.filename.camalized
+        profile.name = name
         profile.author = spec.author
         profile.description = spec.description
         profile.root_path = spec.full_gem_path
@@ -135,7 +134,7 @@ puts "spec.name: #{spec.name}"
     end
 
     def perform_analysis(observer)
-      @battle_score, @battle_description = Analyzers::BattleAnalyzer.analyze(self)
+      @battle_score, @battle_description = Analyzers::PlayAnalyzer.analyze(self)
       observer.update_battle_score(@battle_score, @battle_description)
       Server.submit_score(self, "play", @battle_score, @battle_description)
 
@@ -163,6 +162,7 @@ puts "spec.name: #{spec.name}"
     end
 
     def lib_dir
+      return nil if root_path.nil?
       return File.join(root_path, "lib")
     end
 

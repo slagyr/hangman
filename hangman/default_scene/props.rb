@@ -1,7 +1,8 @@
 title
 menu do
-  menu_item :text => "Close", :action => "scene.close"
   menu_item :id => "new_game_menu_item", :text => "New Game", :action => "scene.play_new_game"
+  menu_item :id => "ais_button", :text => "Computer AIs", :action => "scene.load_computers"
+  menu_item :text => "Close", :action => "scene.close"
 end
 hangman :id => "hangman" do
   word_area :id => "word_area" do
