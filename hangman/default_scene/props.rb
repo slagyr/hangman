@@ -11,12 +11,12 @@ end
 status :id => "status"
 letters do
   ("A".."M").each do |l|
-    letter :text => l
+    letter :text => l, :id => "letter_#{l}"
   end
 end
 letters do
   ("N".."Z").each do |l|
-    letter :text => l
+    letter :text => l, :id => "letter_#{l}"
   end
 end
 footer do

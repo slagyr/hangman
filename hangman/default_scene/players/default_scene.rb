@@ -55,7 +55,8 @@ module DefaultScene
   end
 
   def guessed(letter)
-    puts "guessed letter: #{letter}"
+    find("letter_#{letter.upcase}").disable
+    sleep(0.25)
   end
 
   def incorrect_guess(guess)
@@ -85,6 +86,7 @@ module DefaultScene
       status.text += " The hangman is saved!"
     end
     find_by_name("letter").each { |letter| letter.disable }
+    sleep(1)
     new_game_menu_item.enable
   end
 

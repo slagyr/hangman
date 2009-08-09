@@ -13,15 +13,15 @@ module Hangman
       @ui.set_delay(ui_delay)
       @chosen_words = Array.new(count).map{ rand_word }
       stats = {}
-      players.each{|player|
-      #      player.word_list = @words
-        stats[player] = {'wins' => 0, 'losses' => 0, 'fails' => 0, 'score' => 0}
-        @chosen_words.each{|round_word|
+      players.each do |player|
+        @player_stats = stats[player] = {:wins => 0, :losses => 0, :fails => 0, :score => 0, :time => 0.0}
+        time { player.word_list = @words }
+        @chosen_words.each do |round_word|
           result, score = play_game(player, round_word)
-          stats[player][pluralize[result]] += 1
-          stats[player]['score'] += score
-        }
-      }
+          stats[player][pluralize[result].to_sym] += 1
+          stats[player][:score] += score
+        end
+      end
       stats
     end
 
@@ -31,10 +31,15 @@ module Hangman
         @word = word
         new_game
         @ui.update_word(filtered_word)
-        guess(player.guess(filtered_word, @guesses_left)) until over?
+        until over? do
+          player_guess = time { player.guess(filtered_word, @guesses_left) }
+          guess( player_guess)
+        end
         return game_result(word), score
       rescue Exception => e
         fail!("Player raised exception: #{e.class.name}: #{e.message}")
+        puts e
+        puts e.backtrace
         return game_result(word), score
       end
     end
@@ -44,7 +49,7 @@ module Hangman
     def new_game
       @guesses_left = 6
       @ui.new_game(@player, @guesses_left)
-      @player.new_game(@guesses_left)
+      time { @player.new_game(@guesses_left) }
       @fail = nil
       @guessed_letters = []
       @available_letters = ('a'..'z').to_a
@@ -55,18 +60,19 @@ module Hangman
     end
 
     def guess(player_guess)
+      player_guess = player_guess.downcase if player_guess
       @ui.guessed(player_guess)
       unless @available_letters.include?(player_guess)
         fail!('Invalid guess')
       else
         if @word.include?(player_guess)
           #correct
-          @player.correct_guess(player_guess)
+          time{ @player.correct_guess(player_guess) }
           @ui.correct_guess(player_guess)
         else
           #incorrect
           @guesses_left -= 1
-          @player.incorrect_guess(player_guess)
+          time { @player.incorrect_guess(player_guess) }
           @ui.incorrect_guess(player_guess)
         end
         @guessed_letters.push(@available_letters.delete(player_guess))
@@ -94,7 +100,7 @@ module Hangman
 
     def fail!(reason)
       @fail = reason
-      @player.fail(reason)
+      time { @player.fail(reason) }
       @ui.fail(reason)
     end
 
@@ -113,7 +119,7 @@ module Hangman
                 'loss'
               end
       @ui.game_result(result, word)
-      @player.game_result(result, word)
+      time { @player.game_result(result, word) }
       result
     end
 
@@ -122,7 +128,7 @@ module Hangman
       score -= unguessed_spaces * 5
       score = -100 if @fail
       @ui.game_score(score)
-      @player.game_score(score)
+      time { @player.game_score(score) }
       score
     end
 
@@ -134,6 +140,15 @@ module Hangman
 
     def pluralize
       {'win' => 'wins', 'loss' => 'losses', 'fail' => 'fails'}
+    end
+
+
+    def time
+      before = Time.now
+      value = yield
+      after = Time.now
+      @player_stats[:time] += (after - before)
+      return value
     end
   end
 end

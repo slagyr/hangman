@@ -14,6 +14,11 @@ profile :id => "profile" do
     result_graph :id => "average_graph"
   end
 
+  stat_label :text => "Time Score:"
+  stat_result do
+    result_graph :id => "time_graph"
+  end
+
   stat_label :text => "Play Record:"
   stat_result do
     result_graph :id => "play_graph"
@@ -46,5 +51,6 @@ profile :id => "profile" do
 
   buttons do
     evaulate_button :id => "evaluate_button", :text => "Perform Analysis", :on_mouse_clicked => "scene.find('profile').perform_analysis"
+    evaulate_button :id => "compete_button", :text => "Play Hangman", :on_mouse_clicked => "scene.play_hangman"
   end
 end

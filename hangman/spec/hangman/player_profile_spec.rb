@@ -40,6 +40,7 @@ describe Hangman::PlayerProfile do
     Hangman::Analyzers::CoverageAnalyzer.stub!(:analyze).with(profile).and_return([40, "coverage"])
     Hangman::Analyzers::SaikuroAnalyzer.stub!(:analyze).with(profile).and_return([55, "saikuro"])
     Hangman::Analyzers::FlayAnalyzer.stub!(:analyze).with(profile).and_return([56, "flay"])
+    Hangman::Analyzers::TimeAnalyzer.stub!(:analyze).with(profile).and_return([57, "time"])
 
     observer = mock("observer")
     observer.should_receive(:update_battle_score).with(10, "battle")
@@ -49,6 +50,7 @@ describe Hangman::PlayerProfile do
     observer.should_receive(:update_average_score).with(25)
     observer.should_receive(:update_saikuro_score).with(55, "saikuro")
     observer.should_receive(:update_flay_score).with(56, "flay")
+    observer.should_receive(:update_time_score).with(57, "time")
 
     profile.perform_analysis(observer)
   end

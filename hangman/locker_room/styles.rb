@@ -130,6 +130,7 @@ evaulate_button {
   font_size 12
   font_face "courier_new"
   padding 5
+  left_margin 5
   horizontal_alignment :center
   hover {
     background_color :white

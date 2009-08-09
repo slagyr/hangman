@@ -3,9 +3,11 @@ module LockerRoom
   prop_reader :player_list, :profile
 
   def scene_opened(e)
-    load_players if production.computer_players.nil?
-    player_names = production.computer_players.keys.sort
-    self.players = production.computer_players.values
+    Thread.new do
+      load_players if production.computer_players.nil?
+      player_names = production.computer_players.keys.sort
+      self.players = production.computer_players.values
+    end
   end
 
   def close
@@ -17,6 +19,19 @@ module LockerRoom
     player_list.build do
       players.each do |player|
         __install "locker_room/player_list_item.rb", :player => player
+      end
+    end
+  end
+
+  def play_hangman
+    @game_thread = Thread.new do
+      begin
+        player = profile.profile.create_player
+        stats = production.game_engine.play_games([player], 5)
+p stats        
+      rescue StandardError => e
+        puts e
+        puts e.backtrace
       end
     end
   end

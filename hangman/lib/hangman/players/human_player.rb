@@ -2,6 +2,8 @@ module Hangman
   module Players
     class HumanPlayer
 
+      attr_accessor :word_list
+
       def initialize(ui)
         @ui = ui
       end

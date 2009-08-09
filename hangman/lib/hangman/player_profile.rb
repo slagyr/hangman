@@ -5,6 +5,7 @@ require 'hangman/analyzers/flog_analyzer'
 require 'hangman/analyzers/coverage_analyzer'
 require 'hangman/analyzers/saikuro_analyzer'
 require 'hangman/analyzers/flay_analyzer'
+require 'hangman/analyzers/time_analyzer'
 require 'etc'
 
 module Hangman
@@ -80,6 +81,7 @@ module Hangman
     attr_accessor :battle_score, :battle_description
     attr_accessor :saikuro_score, :saikuro_description
     attr_accessor :flay_score, :flay_description
+    attr_accessor :time_score, :time_description
     attr_accessor :games_played, :wins, :disqualifications
 
     def initialize(options={})
@@ -137,6 +139,10 @@ module Hangman
       @battle_score, @battle_description = Analyzers::PlayAnalyzer.analyze(self)
       observer.update_battle_score(@battle_score, @battle_description)
       Server.submit_score(self, "play", @battle_score, @battle_description)
+
+      @time_score, @time_description = Analyzers::TimeAnalyzer.analyze(self)
+      observer.update_time_score(@time_score, @time_description)
+      Server.submit_score(self, "time", @time_score, @time_description)
 
       @simplicity_score, @simplicity_description = Analyzers::SimplicityAnalyzer.analyze(self)
       observer.update_simplicity_score(@simplicity_score, @simplicity_description)
