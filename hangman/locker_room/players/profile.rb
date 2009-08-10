@@ -15,7 +15,7 @@ module Profile
     description.text = @profile.description
 
     average_graph.populate(@profile.average_score, @profile.average_score.to_s)
-    play_graph.populate(@profile.battle_score, @profile.battle_description)
+    play_graph.populate(@profile.play_score, @profile.play_description)
     time_graph.populate(@profile.time_score, @profile.time_description)
     simplicity_graph.populate(@profile.simplicity_score, @profile.simplicity_description)
     coverage_graph.populate(@profile.coverage_score, @profile.coverage_description)
@@ -41,7 +41,7 @@ module Profile
     end
   end
 
-  def update_battle_score(score, description)
+  def update_play_score(score, description)
     play_graph.populate(score, description)
   end
 

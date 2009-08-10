@@ -23,12 +23,15 @@ module LockerRoom
     end
   end
 
-  def play_hangman
+  def play_hangman(number)
     @game_thread = Thread.new do
       begin
-        player = profile.profile.create_player
-        stats = production.game_engine.play_games([player], 5)
-p stats        
+        player_profile = profile.profile
+        player = player_profile.create_player
+        stats = production.game_engine.play_games([player], number)
+        player_stats = stats[player]
+        player_stats[:name] = player_profile.name
+        Hangman::Server.submit_play(player_stats)
       rescue StandardError => e
         puts e
         puts e.backtrace

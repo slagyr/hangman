@@ -78,17 +78,20 @@ module Hangman
     attr_accessor :flog_score, :flog_description
     attr_accessor :simplicity_score, :simplicity_description
     attr_accessor :coverage_score, :coverage_description
-    attr_accessor :battle_score, :battle_description
+    attr_accessor :play_score, :play_description
     attr_accessor :saikuro_score, :saikuro_description
     attr_accessor :flay_score, :flay_description
     attr_accessor :time_score, :time_description
-    attr_accessor :games_played, :wins, :disqualifications
+    attr_accessor :games_played, :wins, :disqualifications, :time_used
 
     def initialize(options={})
+      @games_played = 0
+      @wins = 0
+      @time_used = 0.0
       @flog_score = 0
       @simplicity_score = 0
       @coverage_score = 0
-      @battle_score = 0
+      @play_score = 0
       options.each_pair do |key, value|
         if self.respond_to?(key.to_sym)
           self.instance_variable_set("@#{key}", value)
@@ -124,7 +127,15 @@ module Hangman
 
     def average_score
       begin
-        return (flog_score + coverage_score + simplicity_score + battle_score + saikuro_score + flay_score) / 6
+        total = play_score * 3
+        total += time_score
+        total += coverage_score * 2
+        total += simplicity_score
+        total += flog_score
+        total += saikuro_score
+        total += flay_score
+        average = total / 10
+        return average
       rescue Exception
         return 0
       end
@@ -136,9 +147,9 @@ module Hangman
     end
 
     def perform_analysis(observer)
-      @battle_score, @battle_description = Analyzers::PlayAnalyzer.analyze(self)
-      observer.update_battle_score(@battle_score, @battle_description)
-      Server.submit_score(self, "play", @battle_score, @battle_description)
+      @play_score, @play_description = Analyzers::PlayAnalyzer.analyze(self)
+      observer.update_play_score(@play_score, @play_description)
+      Server.submit_score(self, "play", @play_score, @play_description)
 
       @time_score, @time_description = Analyzers::TimeAnalyzer.analyze(self)
       observer.update_time_score(@time_score, @time_description)

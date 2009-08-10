@@ -1,6 +1,24 @@
 require 'drb'
 require 'hangman/player_profile'
 
+
+class Thread
+  #
+  # Wraps a block in Thread.critical, restoring the original value upon exit
+  # from the critical section.
+  #
+  def Thread.exclusive
+    _old = Thread.critical
+    begin
+      Thread.critical = true
+      return yield
+    ensure
+      Thread.critical = _old
+    end
+  end
+end
+
+
 module Hangman
 
   class Server
@@ -11,7 +29,7 @@ module Hangman
       def api
         if @api.nil?
           DRb.start_service
-          @api = DRbObject.new(nil, 'druby://micahmartin.com:9696')
+          @api = DRbObject.new(nil, 'druby://micahmartin.com:9697')
         end
         return @api
       end
@@ -36,9 +54,9 @@ module Hangman
         end
       end
 
-      def submit_game(game)
+      def submit_play(play)
         try do
-          api.submit_battle(:player1 => game.player1_name, :player2 => game.player2_name, :winner => game.player1_winner? ? game.player1_name : game.player2_name, :disqualification => game.disqualification_reason != nil)
+          api.submit_play(:player => play[:name].untaint, :games => play[:games], :wins => play[:wins], :time_used => play[:time])
         end
       end
 

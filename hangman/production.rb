@@ -2,7 +2,7 @@
 # The containing production will acquire all the behavior defined in this module.
 # You may define serveral hooks and initialization steps here.
 
-$USE_SERVER = false
+$USE_SERVER = true
 
 module Production
 

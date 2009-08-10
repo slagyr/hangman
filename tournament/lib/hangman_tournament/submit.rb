@@ -33,7 +33,7 @@ module HangmanTournament
     def collect_data
       spec = gem_spec
       data = {}
-      data[:name] = spec.summary[18..-1]
+      data[:name] = spec.summary[15..-1]
       data[:author] = spec.author
       data[:email] = spec.email
       data[:description] = spec.description

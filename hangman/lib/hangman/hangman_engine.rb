@@ -14,7 +14,7 @@ module Hangman
       @chosen_words = Array.new(count).map{ rand_word }
       stats = {}
       players.each do |player|
-        @player_stats = stats[player] = {:wins => 0, :losses => 0, :fails => 0, :score => 0, :time => 0.0}
+        @player_stats = stats[player] = {:games => count, :wins => 0, :losses => 0, :fails => 0, :score => 0, :time => 0.0}
         time { player.word_list = @words }
         @chosen_words.each do |round_word|
           result, score = play_game(player, round_word)

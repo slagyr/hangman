@@ -17,7 +17,7 @@ describe Hangman::PlayerProfile do
     profile.flog_score.should == 0
     profile.coverage_score.should == 0
     profile.simplicity_score.should == 0
-    profile.battle_score.should == 0
+    profile.play_score.should == 0
   end
 
   it "should perform analysis" do
@@ -43,7 +43,7 @@ describe Hangman::PlayerProfile do
     Hangman::Analyzers::TimeAnalyzer.stub!(:analyze).with(profile).and_return([57, "time"])
 
     observer = mock("observer")
-    observer.should_receive(:update_battle_score).with(10, "battle")
+    observer.should_receive(:update_play_score).with(10, "battle")
     observer.should_receive(:update_simplicity_score).with(20, "simple")
     observer.should_receive(:update_flog_score).with(30, "flog")
     observer.should_receive(:update_coverage_score).with(40, "coverage")
