@@ -8,7 +8,7 @@ module Hangman
       def self.analyze(profile)
         begin
           record = Server.profile(profile.name)
-        rescue ServerException => e
+        rescue Exception => e
           puts e
           puts e.backtrace
           return 50, "50 : Couldn't retreive record"

@@ -3,13 +3,9 @@ require 'hangman/analyzers/flay_analyzer'
 require 'hangman/player_profile'
 
 describe Hangman::Analyzers::FlayAnalyzer do
-
-  before(:all) do
-    self.producer #load the production
-  end
-
+  
   it "should flay the Random Player" do
-    profile = Hangman::PlayerProfile.load_from_gem('micahs_fury')
+    profile = Hangman::PlayerProfile.load_from_gem('hangman_letter_letdown')
 
     score, description = Hangman::Analyzers::FlayAnalyzer.analyze(profile)
 

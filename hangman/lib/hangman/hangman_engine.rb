@@ -128,7 +128,7 @@ module Hangman
       score -= unguessed_spaces * 5
       score = -100 if @fail
       @ui.game_score(score)
-      time { @player.game_score(score) }
+#      time { @player.game_score(score) }
       score
     end
 

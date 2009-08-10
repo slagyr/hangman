@@ -41,12 +41,5 @@ module !-CLASSNAME-!
     # The spelled out word will be provided regardless of the result.
     def game_result(result, word)
     end
-
-    # your score for this game.
-    # You get 10 points per guess you have left,
-    # lose 5 points for each unsolved space in the word
-    # and lose 100 points for failing to complete your guesses because of an error in your code.
-    def game_score(score)
-    end
   end
 end
