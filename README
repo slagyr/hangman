@@ -1,15 +1,15 @@
-= Battleship Tournament
+= Hangman Tournament
 
-A Ruby sparring tournament.  Compete by building a computer AI for the classic Battleship game.
+A Ruby sparring tournament.  Compete by building a computer AI to play hangman.
 
 == Participating
 
 There are 4 simple steps to participate.
 
-1 Install the battleship_tournament gem
-  sudo gem install battleship_tournament
+1 Install the hangman_tournament gem
+  sudo gem install hangman_tournament
 2 Create a player (computer AI) with a creative and unique name
-  generate_battleship_player "Some Creative and Unique Name"
+  generate_hangman_player "Some Creative and Unique Name"
 3 Build and install your player's ruby gem
   # Install the rspec gem if needed
   # sudo gem install rspec
@@ -20,18 +20,22 @@ There are 4 simple steps to participate.
   # Edit Rakefile and provide the information indicated.
   rake submit
 
-== Battle Your Player
+== Try Out Your Player
 
-You'll need Limelight to watch your player battle.
+You'll need Limelight to watch your player play.
 
 1 Download an installer from http://limelight.8thlight.com
-2 Install
-3 Create a Limelight Link file
-  echo "http://sparring.rubyforge.org/battleship/battleship.llp" > ~/Desktop/battleship.lll
-4 Go to your desktop and double click on battleship.llp
 
-You should see your player in the list along with Sergeant Simple and Rear Admiral Randy.
-Select a competator and begin the battle.  Who will win?
+2 Install
+
+3 Create a Limelight Link file
+  echo "http://slagyr.github.com/sparring/hangman/hangman.llp" > ~/Desktop/hangman.lll
+  
+4 Go to your desktop and double click on hangman.lll
+
+Click on the link at the top that says "Computer AIs"
+You should see your player in the list along with Letter Letdown.
+Have it play a few games. Perform some analysis to see how your code holds up.
 
 == Improve Your Player's AI
 
@@ -44,7 +48,7 @@ You'll also find an lack of specs in the file:
 Use of rSpec is required.
 
 There are plenty of comments in the generated source code.  Go nuts!  Add code.  Change code. Add files.
-Turn your player into a masterfull battleship AI.
+Turn your player into a masterfull hangman AI.
 
 Whe your player is ready, be sure to submit again.  Make sure you remember your players password.
 You may submit as many times as you like. Each submission will overwrite the previous submission.
@@ -54,22 +58,21 @@ You may submit as many times as you like. Each submission will overwrite the pre
 
 Join the email list.  Use it for questions and discussion about the tournament.
 
-Subscribe: http://rubyforge.org/mailman/listinfo/sparring-battleship
-Email: sparring-battleship@rubyforge.org
+Subscribe: http://rubyforge.org/mailman/listinfo/sparring-hangman
+Email: sparring-hangman@rubyforge.org
 
 == Rules
 
-You have until November 30th, 2008 to submit your final solution.  On December 1st, competition begins.
-Each player will be matched against every other player in round robin fashion.  Each match
-it a best-of-21 games.  The first player to win 11 games, wins the match.  The Tournament Champion will
-be the player with the most match wins.
+You have until September 30th, 2009 to submit your final solution.  On October 1st, competition begins.
+Each player will play many many games of hangman.  All players will receive the same words in the same order.  The
+Tournament Champion will be the player that wins the most games.
 
 However, there is a more prestegious title to which players should aspire.  The Tournament Master.  This coveted
-title is awarded not to the player who wins the most battles but to the player that also has the best source code.
+title is awarded not to the player who wins the most games but to the player that also has the best source code.
 A series of metrics will be collected on your player's source code and compiled into an all-round score.
 The player with the best all-round score will be honored as Tournament Master.
 
-The Battleship Limelight production provides a Locker Room scene where you can run some sample analysis on
+The Hangman Limelight production provides a Locker Room scene where you can run some sample analysis on
 your player.  This is just an example of the analysis that will be perfomed but it should give you an idea of
 what is expected.
 
@@ -81,21 +84,20 @@ To run full analysis, you will have to have the following gems, and their depend
  * flog
  * rCov
  * rSpec
+ * flay
 
 == Terms for Disqualification
 
- 1 Attempting to open or modify classes, modules, or objects in the Battleship engine.
- 2 Tampering with the Battleship.Rakefile file.
- 3 Providing invalid ship placements.
- 4 Providing invalid targets.
- 5 Attempting to open or modify opponent player's classes, modules, or objects.
- 6 Making use of Kernel.set_trace_func
- 7 Tampering or abusing tournament infractruscure and facilities
+ 1 Attempting to open or modify classes, modules, or objects in the Hangman engine.
+ 2 Tampering with the Hangman.Rakefile file.
+ 3 Providing invalid letter guesses.
+ 4 Making use of Kernel.set_trace_func
+ 5 Tampering or abusing tournament infractruscure and facilities
 
 == Troubleshooting
 
 "None of the players are showing up in the player lists."
-First check that the player gems are installed.  It's likely that the Battleship engine cannot find them.
+First check that the player gems are installed.  It's likely that the Hangman engine cannot find them.
 We'll have to tell it where it can find the gems.
 Mac:
   ruby -r "rubygems" -e "File.open(File.expand_path('~/.gem_home'), 'w') { |f| f.write Gem.dir }"

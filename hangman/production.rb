@@ -9,6 +9,10 @@ module Production
   attr_reader :game_engine
   attr_accessor :computer_players
 
+  def minimum_limelight_version
+    return "0.4.0"
+  end
+
 #  # Define this method if you want the production name to be different from the default, directory name.
 #  def name
 #    return Hangman
@@ -30,7 +34,6 @@ module Production
   def production_opened
     game_scene = theater["default"].current_scene
     @game_engine = Hangman::HangmanEngine.new(game_scene)
-puts "@game_engine: #{@game_engine}"    
   end
 #
 #  # The system will call this methods when it wishes to close the production, perhaps when the user quits the

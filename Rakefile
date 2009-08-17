@@ -6,6 +6,8 @@ require 'rake/rdoctask'
 require 'spec/rake/spectask'
 
 
+WEB_ROOT = File.expand_path('~/Projects/slagyr.github.com/sparring/hangman')
+
 desc "Run all specs"
 Spec::Rake::SpecTask.new('spec') do |t|
   t.spec_files = FileList['hangman/spec/**/*.rb']
@@ -14,7 +16,7 @@ end
 
 desc 'Generate RDoc'
 rd = Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'website/hangman'
+  rdoc.rdoc_dir = WEB_ROOT
   rdoc.options << '--title' << 'Hangman' << '--line-numbers' << '--inline-source' << '--main' << 'README'
   rdoc.rdoc_files.include('README')
 end
@@ -40,9 +42,9 @@ task :publish_rubyforge_site => [:verify_user, :verify_password] do
   publisher.upload
 end
 
-desc "Build the battleship.llp file and install in website dir"
+desc "Build the hangman.llp file and install in website dir"
 task :llp do
   system "rm hangman.llp"
   system "jruby -S limelight pack hangman"
-  system "cp hangman.llp website/hangman/"
+  system "cp hangman.llp #{WEB_ROOT}"
 end

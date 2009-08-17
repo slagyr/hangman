@@ -12,7 +12,7 @@
 stage "default" do
   default_scene "default_scene"
   title "Hangman"
-  location [200, 25]
+  location [:center, :center]
   size [550, 550]
   framed false
   background_color "transparent"
@@ -20,18 +20,18 @@ end
 
 stage "locker_room" do
   title "Locker Room"
-  location [50, 200]
+  location [:left, :center]
   size [300, 550]
   framed false
   background_color "transparent"
 end
 
-stage "devtool" do
-  default_scene "devtool"
-  title "Dev Tool"
-  location [50, 25]
-  size [100, 100]
-  background_color "transparent"
-  framed false
-end
+#stage "devtool" do
+#  default_scene "devtool"
+#  title "Dev Tool"
+#  location [50, 25]
+#  size [100, 100]
+#  background_color "transparent"
+#  framed false
+#end
 
