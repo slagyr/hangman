@@ -15,7 +15,7 @@ There are 4 simple steps to participate.
   # sudo gem install rspec
   cd some_creative_and_unique_name
   rake gem
-  sudo gem install pkg/some_creative_and_unique_name-1.0.gem
+  sudo gem install pkg/hangman_some_creative_and_unique_name-1.0.gem
 4 Enter data, choose password, and submit your player
   # Edit Rakefile and provide the information indicated.
   rake submit
@@ -24,7 +24,7 @@ There are 4 simple steps to participate.
 
 You'll need Limelight to watch your player play.
 
-1 Download an installer from http://limelight.8thlight.com
+1 Download an installer from http://limelight.8thlight.com.  (Minimum version required is 0.4.0)
 
 2 Install
 
@@ -48,9 +48,9 @@ You'll also find an lack of specs in the file:
 Use of rSpec is required.
 
 There are plenty of comments in the generated source code.  Go nuts!  Add code.  Change code. Add files.
-Turn your player into a masterfull hangman AI.
+Turn your player into a masterful hangman AI.
 
-Whe your player is ready, be sure to submit again.  Make sure you remember your players password.
+When your player is ready, be sure to submit again.  Make sure you remember your players password.
 You may submit as many times as you like. Each submission will overwrite the previous submission.
   rake submit
 
@@ -67,13 +67,13 @@ You have until September 30th, 2009 to submit your final solution.  On October 1
 Each player will play many many games of hangman.  All players will receive the same words in the same order.  The
 Tournament Champion will be the player that wins the most games.
 
-However, there is a more prestegious title to which players should aspire.  The Tournament Master.  This coveted
+However, there is a more prestigious title to which players should aspire.  The Tournament Master.  This coveted
 title is awarded not to the player who wins the most games but to the player that also has the best source code.
 A series of metrics will be collected on your player's source code and compiled into an all-round score.
 The player with the best all-round score will be honored as Tournament Master.
 
 The Hangman Limelight production provides a Locker Room scene where you can run some sample analysis on
-your player.  This is just an example of the analysis that will be perfomed but it should give you an idea of
+your player.  This is just an example of the analysis that will be performed but it should give you an idea of
 what is expected.
 
 Solutions may NOT make use of ruby gems.  The tournament is about crafting a complete solution.
@@ -92,7 +92,7 @@ To run full analysis, you will have to have the following gems, and their depend
  2 Tampering with the Hangman.Rakefile file.
  3 Providing invalid letter guesses.
  4 Making use of Kernel.set_trace_func
- 5 Tampering or abusing tournament infractruscure and facilities
+ 5 Tampering or abusing tournament infrastructure and facilities
 
 == Troubleshooting
 

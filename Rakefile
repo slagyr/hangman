@@ -22,25 +22,25 @@ rd = Rake::RDocTask.new do |rdoc|
 end
 task :rdoc
 
-task :verify_user do
-  raise "RUBYFORGE_USER environment variable not set!" unless ENV['RUBYFORGE_USER']
-end
-
-task :verify_password do
-  raise "RUBYFORGE_PASSWORD environment variable not set!" unless ENV['RUBYFORGE_PASSWORD']
-end
-
-desc "Upload Website to RubyForge"
-task :publish_rubyforge_site => [:verify_user, :verify_password] do
-  require 'rake/contrib/rubyforgepublisher'
-  publisher = Rake::SshDirPublisher.new(
-    "#{ENV['RUBYFORGE_USER']}@rubyforge.org",
-    "/var/www/gforge-projects/sparring/",
-    "website"
-  )
-
-  publisher.upload
-end
+#task :verify_user do
+#  raise "RUBYFORGE_USER environment variable not set!" unless ENV['RUBYFORGE_USER']
+#end
+#
+#task :verify_password do
+#  raise "RUBYFORGE_PASSWORD environment variable not set!" unless ENV['RUBYFORGE_PASSWORD']
+#end
+#
+#desc "Upload Website to RubyForge"
+#task :publish_rubyforge_site => [:verify_user, :verify_password] do
+#  require 'rake/contrib/rubyforgepublisher'
+#  publisher = Rake::SshDirPublisher.new(
+#    "#{ENV['RUBYFORGE_USER']}@rubyforge.org",
+#    "/var/www/gforge-projects/sparring/",
+#    "website"
+#  )
+#
+#  publisher.upload
+#end
 
 desc "Build the hangman.llp file and install in website dir"
 task :llp do
