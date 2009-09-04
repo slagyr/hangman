@@ -31,7 +31,8 @@ You'll need Limelight to watch your player play.
 3 Create a Limelight Link file
   echo "http://slagyr.github.com/sparring/hangman/hangman.llp" > ~/Desktop/hangman.lll
   
-4 Go to your desktop and double click on hangman.lll
+4 Go to your desktop and double click on hangman.lll.  Or if you've installed the Limelight gem...
+  jruby -S limelight open ~/Desktop/hangman.lll
 
 Click on the link at the top that says "Computer AIs"
 You should see your player in the list along with Letter Letdown.
