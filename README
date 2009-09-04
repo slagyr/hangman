@@ -107,7 +107,7 @@ Windows:
 Find your gem directory.  In you home directory (C:\Documents and Settings\Micah) create a file named 'gem_home.txt'
 containing the path to your gem directory.
 
-=== When submitting, I get the error: Could not find installed gem named 'one_dot_two_test'
+=== When submitting, I get the error: Could not find installed gem named '<my player name>'
 
 This is a problem in the hangman_tournament-1.1.gem.  Install version 1.2 and the problem should be resolved.
 
