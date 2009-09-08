@@ -5,18 +5,22 @@ module Hangman
 
     class FlogAnalyzer
 
-      ScoreRegex = /: \((\d+\.\d)\)/
+      ScoreRegex = /(\d+\.\d): .*/
       PassingScore = 10.0
 
       def self.analyze(profile)
         results = `flog -a #{profile.lib_dir}`
 
-        return 0, "Flog not installed properly." if results[0..9] != "Total Flog"
+        valid_flog_result = results =~ /flog total/
+        return 0, "Flog 2.2 not installed properly." if !valid_flog_result
 
         methods = 0
         passes = 0
         lines = results.split(/$/)
+        lines.shift # total flog
+        lines.shift # method average
         lines.each do |line|
+          line.strip!
           match = ScoreRegex.match(line)
           if match
             methods += 1
@@ -24,7 +28,7 @@ module Hangman
             passes += 1 if score < PassingScore
           end
         end
-
+        return 0, "No methods found!" if methods == 0 
         score = ((passes.to_f / methods.to_f) * 100.0 + 0.5).to_i
         return score, "#{score} : #{passes}/#{methods} methods pass"
       end

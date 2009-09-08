@@ -1,4 +1,5 @@
 #ruby "/opt/local/lib/ruby/gems/1.8/gems/jscruggs-metric_fu-0.8.0/lib/metric_fu/saikuro/saikuro.rb" --warn_cyclo 5 --error_cyclo 7 --output_directory /tmp/metric_fu/saikuro --input_directory "lib" --filter_cyclo 0 --cyclo
+require 'tmpdir'
 
 module Hangman
   module Analyzers
@@ -6,16 +7,18 @@ module Hangman
     class SaikuroAnalyzer
 
       FAULT_REGEXP = /<td class="(warning|error)">(\d+)<\/td>/
+      TMPDIR = Dir.tmpdir
 
       SaikuroMain = File.expand_path(File.dirname(__FILE__) + "/saikuro.rb")
-      SaikuroOptions = "--warn_cyclo 5 --error_cyclo 7 --output_directory /tmp/saikuro --filter_cyclo 0 --cyclo "
+      SaikuroOptions = "--warn_cyclo 5 --error_cyclo 7 --output_directory \"#{TMPDIR}\" --filter_cyclo 0 --cyclo "
 
       def self.analyze(profile)
         return 0, "0 : lib not found" if profile.lib_dir.nil?
-        command = "ruby #{SaikuroMain} #{SaikuroOptions} --input_directory #{profile.lib_dir}"
+        command = "ruby \"#{SaikuroMain}\" #{SaikuroOptions} --input_directory \"#{profile.lib_dir}\""
         system command
 
-        output = IO.read("/tmp/saikuro/index_cyclo.html")
+        output_file = File.join(TMPDIR, "index_cyclo.html")
+        output = IO.read( output_file)
 
         fault_total = 0
         while match = output.match(FAULT_REGEXP)
