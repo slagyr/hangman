@@ -52,5 +52,6 @@ profile :id => "profile" do
   buttons do
     evaulate_button :id => "evaluate_button", :text => "Perform Analysis", :on_mouse_clicked => "scene.find('profile').perform_analysis"
     evaulate_button :id => "compete_button", :text => "Play 5 Games", :on_mouse_clicked => "scene.play_hangman(5)"
+    evaulate_button :id => "compete20_button", :text => "Play 20 Games", :on_mouse_clicked => "scene.play_hangman(20)"
   end
 end

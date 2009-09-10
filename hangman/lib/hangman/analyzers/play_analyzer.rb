@@ -5,9 +5,9 @@ module Hangman
 
     class PlayAnalyzer
 
-      def self.analyze(profile)
+      def self.analyze(profile)        
         begin
-          record = Server.profile(profile.name)
+          record = Server.profile(profile.name) || profile
         rescue Exception => e
           puts e
           puts e.backtrace

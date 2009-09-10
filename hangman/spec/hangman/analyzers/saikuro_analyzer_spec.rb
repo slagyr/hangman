@@ -9,9 +9,11 @@ describe Hangman::Analyzers::FlogAnalyzer do
   end
 
   it "should measure cyclomatic complexity of the Random Player" do
-    profile = Hangman::PlayerProfile.load_from_gem('rear_admiral_randy')
+    profile = Hangman::PlayerProfile.load_from_gem('hangman_letter_letdown')
 
     score, description = Hangman::Analyzers::SaikuroAnalyzer.analyze(profile)
+
+puts "score, description: #{score} , #{description}"    
 
     score.should == 99
     description.should == "99 : 1 pts excessive complexity"

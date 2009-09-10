@@ -13,8 +13,11 @@ module Hangman
         match = CoverageRegexp.match(last)
         return 0, "Errors checking coverage." if match.nil?
 
-        score = (match[1].to_f + 0.5).to_i
-        return score, "#{score} : #{score}% test coverage"
+        coverage_percentage = match[1].to_f
+        miss = 100 - coverage_percentage
+        score = (100 - (miss * 5)).to_i
+        score = 0 if score < 0
+        return score, "#{score} : #{coverage_percentage}% test coverage"
       end
 
     end

@@ -127,9 +127,9 @@ evaulate_button {
   rounded_corner_radius 4
   background_color :transparent
   text_color "#2661da"
-  font_size 12
+  font_size 10
   font_face "courier_new"
-  padding 5
+  padding 3
   left_margin 5
   horizontal_alignment :center
   hover {

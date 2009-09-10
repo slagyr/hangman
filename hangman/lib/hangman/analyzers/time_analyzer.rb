@@ -5,7 +5,7 @@ module Hangman
 
       def self.analyze(profile)
         begin
-          record = Server.profile(profile.name)
+          record = Server.profile(profile.name) || profile
         rescue Exception => e
           puts e
           puts e.backtrace
@@ -19,7 +19,7 @@ module Hangman
         seconds_per_game = record.time_used.to_f / games_played.to_f
         score = ((1.0 - seconds_per_game) * 100).to_i
         score = 0 if score < 0
-        return score, "#{score} : #{seconds_per_game} sec/game"
+        return score, "#{score} : #{seconds_per_game.to_s[0..5]} sec/game"
       end
 
     end

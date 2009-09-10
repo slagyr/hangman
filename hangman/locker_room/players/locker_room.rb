@@ -31,6 +31,7 @@ module LockerRoom
         stats = production.game_engine.play_games([player], number)
         player_stats = stats[player]
         player_stats[:name] = player_profile.name
+        player_profile.apply_stats(player_stats)
         Hangman::Server.submit_play(player_stats)
       rescue StandardError => e
         puts e

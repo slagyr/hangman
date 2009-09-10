@@ -10,11 +10,12 @@ describe Hangman::Analyzers::SimplicityAnalyzer do
 
   it "should check simplicity of the Random Player" do
     profile = Hangman::PlayerProfile.load_from_gem('hangman_letter_letdown')
+#    profile = Hangman::PlayerProfile.load_from_gem('hangman_sensei_slagyr')
 
     score, description = Hangman::Analyzers::SimplicityAnalyzer.analyze(profile)
 
     score.should == 100
-    description.should == "100 : 51 LOC"
+    description.should == "100 : 183 code mass"
   end
 
   it "should be logarithmic" do

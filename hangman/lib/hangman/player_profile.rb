@@ -99,6 +99,12 @@ module Hangman
       end
     end
 
+    def apply_stats(stats)
+      @games_played += stats[:games]
+      @wins += stats[:wins]
+      @time_used += stats[:time]
+    end
+
     def simple_hash
       return {:name => name,
           :author => author,
