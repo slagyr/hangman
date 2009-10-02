@@ -55,8 +55,13 @@ When your player is ready, be sure to submit again.  Make sure you remember your
 You may submit as many times as you like. Each submission will overwrite the previous submission.
   rake submit
 
-== Email List
+== Staying in the Loop
 
+=== Twitter
+
+Follow @CodeSparring for news and updates on the tournament.  
+
+=== Email list
 Join the email list.  Use it for questions and discussion about the tournament.
 
 Subscribe: http://rubyforge.org/mailman/listinfo/sparring-hangman
